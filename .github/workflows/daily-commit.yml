@@ -5,6 +5,9 @@ on:
     - cron: '0 0 * * *'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   commit:
     runs-on: ubuntu-latest
@@ -16,8 +19,8 @@ jobs:
       - name: Auto commit
         run: |
           echo "Commit at $(date)" >> log.txt
-          git config --global user.email "abduldev.muhammad3589@gmail.com"
-          git config --global user.name "Muhammad-Ramazanovich"
+          git config --global user.email "your-email@example.com"
+          git config --global user.name "Your GitHub Username"
           git add .
           git commit -m "Daily contribution: $(date)" || echo "Nothing to commit"
           git push
