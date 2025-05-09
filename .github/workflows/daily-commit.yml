@@ -1,0 +1,23 @@
+name: Daily GitHub Contribution
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Auto commit
+        run: |
+          echo "Commit at $(date)" >> log.txt
+          git config --global user.email "abduldev.muhammad3589@gmail.com"
+          git config --global user.name "Muhammad-Ramazanovich"
+          git add .
+          git commit -m "Daily contribution: $(date)" || echo "Nothing to commit"
+          git push
